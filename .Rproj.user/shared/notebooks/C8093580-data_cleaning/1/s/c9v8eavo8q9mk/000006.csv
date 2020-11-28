@@ -1,0 +1,3 @@
+"0","joined <- joined %>% mutate(time = NULL) %>% "
+"0","  relocate(Month, .after = Hour) %>% "
+"0","  relocate(Year, .after = Month)"

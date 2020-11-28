@@ -1,0 +1,32 @@
+{
+    "id": "141536C7",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1606534812059.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "expression": "demand",
+        "caption": "demand",
+        "totalObservations": 122736,
+        "displayedObservations": 122736,
+        "variables": 5,
+        "cacheKey": "D68C6FFB",
+        "object": "demand",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=demand&cache_key=D68C6FFB&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1606533995,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1606534812059,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,2 @@
+"0","demand <- demand %>%"
+"0","  rename(Energy = `Total Energy Use from Electricity (MW)`)"

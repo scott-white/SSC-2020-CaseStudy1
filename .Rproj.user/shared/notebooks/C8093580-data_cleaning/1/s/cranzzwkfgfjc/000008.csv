@@ -1,0 +1,2 @@
+"0","joined <- demand %>%"
+"0","  inner_join(weather, by = c(""Date"", ""Hour""))"

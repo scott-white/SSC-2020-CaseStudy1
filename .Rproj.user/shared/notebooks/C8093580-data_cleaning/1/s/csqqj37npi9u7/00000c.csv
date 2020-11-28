@@ -1,0 +1,5 @@
+"0","weather <- weather %>% "
+"0","  mutate(Date = lubridate::date(time),"
+"0","         Hour = lubridate::hour(time) + 1,"
+"0","         .after = time)"
+"0","weather"
