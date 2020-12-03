@@ -1,0 +1,32 @@
+{
+    "id": "09558F1B",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1607007679275.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "expression": "joined",
+        "caption": "joined",
+        "totalObservations": 122736,
+        "displayedObservations": 122736,
+        "variables": 13,
+        "cacheKey": "D6AF6B35",
+        "object": "joined",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=joined&cache_key=D6AF6B35&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7308325556623532388,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1607007679275,
+    "read_only": false,
+    "read_only_alternatives": []
+}

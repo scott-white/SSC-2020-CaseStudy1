@@ -1,0 +1,21 @@
+"0","joined <- read_csv(here(""data_cleaned"", ""joined.csv""))
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m--------------------------------------------------------------------------------------[39m
+cols(
+  Date = [34mcol_date(format = """")[39m,
+  Hour = [32mcol_double()[39m,
+  Month = [32mcol_double()[39m,
+  Year = [32mcol_double()[39m,
+  Energy = [32mcol_double()[39m,
+  precipitation = [32mcol_double()[39m,
+  temperature = [32mcol_double()[39m,
+  irradiance_surface = [32mcol_double()[39m,
+  irradiance_toa = [32mcol_double()[39m,
+  snowfall = [32mcol_double()[39m,
+  snow_depth = [32mcol_double()[39m,
+  cloud_cover = [32mcol_double()[39m,
+  air_density = [32mcol_double()[39m
+)
+
+"

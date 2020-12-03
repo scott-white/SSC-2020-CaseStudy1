@@ -1,0 +1,6 @@
+"0","joined_predicted %>% group_by(Year) %>% "
+"0","  summarise(Total_Predicted = sum(predicted),"
+"0","            Total_Energy = sum(Energy),"
+"0","            Abs_Diff = abs(Total_Predicted - Total_Energy))"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

@@ -1,0 +1,60 @@
+---
+title: "Analysis"
+author: "Scott White"
+date: "03/12/2020"
+output: html_document
+---
+
+# Import needed libraries
+
+```{r}
+library(readr)
+library(here)
+library(tidyverse)
+```
+
+# Import cleaned data
+
+```{r}
+joined <- read_csv(here("data_cleaned", "joined.csv"))
+all_sectors_total <- readRDS(here("data", "all_sectors_total.rds"))
+```
+
+First lets fit a linear model to get a base line and to also help identify the other parts of the pipeline we'll need.
+
+```{r}
+lm(Energy ~ ., select(joined, -Date, -Hour, -Month, -Year)) %>% 
+  summary()
+```
+
+```{r}
+lm(Energy ~ ., select(joined, -Month, -Year)) %>% 
+  summary()
+```
+
+```{r}
+lm(Energy ~ ., select(joined, -Year)) %>% 
+  summary()
+```
+
+```{r}
+model2 <- lm(Energy ~ ., select(joined, -Year))
+```
+
+```{r}
+predict(model2, joined)
+```
+
+```{r}
+joined_predicted <- joined %>% 
+  mutate(predicted = predict(model2, joined),
+         .before = Energy)
+```
+
+```{r}
+joined_predicted %>% group_by(Year) %>% 
+  summarise(Total_Predicted = sum(predicted),
+            Total_Energy = sum(Energy),
+            Abs_Diff = abs(Total_Predicted - Total_Energy))
+```
+

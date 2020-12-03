@@ -1,0 +1,127 @@
+---
+title: "Cleaning Data"
+author: "Scott White"
+output: html_document
+---
+
+```{r}
+library(readxl)
+library(here)
+library(tidyverse)
+```
+
+```{r}
+demand <- read_xlsx(here("data", "ssc2020_hourly_demand.xlsx"), 2)
+weather <- read_xlsx(here("data", "ssc2020_hourly_weather.xlsx"), 2)
+```
+
+```{r}
+demand
+```
+First we'll rename the total energy use column for ease of handling.
+
+```{r}
+demand <- demand %>%
+  rename(Energy = `Total Energy Use from Electricity (MW)`)
+```
+
+We'll also convert Date into a date type for easier handling later.
+
+```{r}
+demand <- demand %>% mutate(Date = lubridate::as_date(Date))
+```
+
+
+
+# Checking for any inconsistencies in the hourly demand data.
+
+```{r}
+demand %>%
+  group_by(Hour) %>% 
+  count()
+```
+
+```{r}
+demand %>%
+  group_by(Year) %>% 
+  count()
+```
+
+Leap years give 24 extra values for every fourth year, as expected.
+
+```{r}
+demand %>%
+  group_by(Month) %>% 
+  count()
+```
+February has lower counts here as well because of it containing the extra day for leap years.
+
+
+```{r}
+summary(demand$Energy)
+```
+
+```{r}
+hist(demand$Energy)
+```
+
+There doesn't appear to be any inconsistencies in the demand data. There's is at least one somewhat low value for the demand data, but that should not affect the analysis greatly. Though we'll keep this point in mind.
+
+
+
+# Checking for any inconsistencies in the hourly weather data.
+```{r}
+weather
+```
+
+First we'll separate the time column into two columns (Date, Hour) so that we can combine the two data sets into a single data frame for easier handling.
+
+```{r}
+lubridate::date(weather$time)
+lubridate::hour(weather$time)
+```
+
+```{r}
+weather <- weather %>% 
+  mutate(Date = lubridate::date(time),
+         Hour = lubridate::hour(time) + 1,
+         .after = time)
+weather
+```
+
+# Next we'll join the two data sets based on the Date and Hour columns.
+
+```{r}
+joined <- demand %>%
+  inner_join(weather, by = c("Date", "Hour"))
+```
+
+```{r}
+joined
+```
+
+We'll now remove the time column from the joined data frame.
+
+```{r}
+joined <- joined %>% mutate(time = NULL) %>% 
+  relocate(Month, .after = Hour) %>% 
+  relocate(Year, .after = Month)
+```
+
+```{r}
+joined
+```
+
+#Now we'll do a check for any missing values
+```{r}
+summary(joined)
+```
+
+No missing values detected.
+
+# Save the cleaned data.
+
+```{r}
+write_csv(joined, here("data_cleaned", "joined.csv"))
+```
+
